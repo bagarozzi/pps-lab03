@@ -2,6 +2,8 @@ package u03
 
 import u03.Optionals.Optional
 
+import scala.annotation.tailrec
+
 object Sequences: // Essentially, generic linkedlists
   
   enum Sequence[E]:
@@ -61,8 +63,14 @@ object Sequences: // Essentially, generic linkedlists
      * E.g., [10, 20, 30] => [30, 20, 10]
      * E.g., [10] => [10]
      * E.g., [] => []
+      Cons(30, Cons(20, Cons(10, Nil()))
      */
-    def reverse[A](s: Sequence[A]): Sequence[A] = ???
+    def reverse[A](s: Sequence[A]): Sequence[A] =
+      @tailrec
+      def loop(current: Sequence[A], acc: Sequence[A]): Sequence[A] = current match
+        case Nil() => acc
+        case Cons(h, t) => loop(t, Cons(h, acc))
+      loop(s, Nil())
 
     /*
      * Map the elements of the sequence to a new sequence and flatten the result
