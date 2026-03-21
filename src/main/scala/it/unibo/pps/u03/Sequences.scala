@@ -91,9 +91,9 @@ object Sequences: // Essentially, generic linkedlists
     def min(s: Sequence[Int]): Optional[Int] =
       def iter(s: Sequence[Int], current: Int): Int = s match
         case Cons(h, t) if h < current => iter(t, h)
-        case Cons(h, t) if h > current => iter(t, current)
+        case Cons(h, t) if h >= current => iter(t, current)
         case _ => current
-      s match 
+      s match
         case Cons(h, t) => Optional.Just(iter(t, h))
         case Nil() => Optional.Empty()
 
