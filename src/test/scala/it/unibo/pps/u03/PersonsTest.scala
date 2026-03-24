@@ -8,8 +8,11 @@ import u03.Sequences.Sequence
 import u03.Sequences.Sequence.{Cons, Nil}
 
 class PersonsTest:
-
+    val sequence: Sequence[Person] = Cons(Person.Teacher("Viroli", "PPS"), Cons(Person.Teacher("Aguzzi", "PPS"), Cons(Person.Teacher("Ricci", "PCD"), Nil())))
     @Test def testTeacherList() =
-        val sequence: Sequence[Person] = Cons(Person.Teacher("Viroli", "PPS"), Cons(Person.Student("Federico", 2022), Cons(Person.Teacher("Ricci", "PCD"), Nil())))
         val result: Sequence[String] = Cons("PPS", Cons("PCD", Nil()))
-        assertEquals(result, teachers(sequence))
+        assertEquals(result, courses(sequence))
+
+    @Test def testDistinctCourses() =
+        val result: Int = 2
+        assertEquals(result, distinctCourses(sequence))
