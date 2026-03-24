@@ -67,6 +67,12 @@ class SequenceTest:
     assertEquals(Cons(10, Cons(20, Nil())), distinct(Cons(10, Cons(20, Cons(10, Nil())))))
     assertEquals(Nil(), distinct(Nil()))
 
+  @Test def testFoldLeft() = {
+    assertEquals(60, foldLeft(sequence)(0)(_ + _))
+    assertEquals(70, foldLeft(sequence)(10)(_ + _))
+    assertEquals(-50, foldLeft(sequence)(10)(_ - _))
+  }
+
   @Test def testGroup() =
     val sequence = Cons(10, Cons(10, Cons(20, Cons(30, Cons(20, Nil())))))
     val grouped =

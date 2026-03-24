@@ -132,6 +132,10 @@ object Sequences: // Essentially, generic linkedlists
         case _ => Nil()
       iter(s, Nil())
 
+    def foldLeft(s: Sequence[Int])(default: Int)(operator: (Int,Int) => Int): Int = s match
+        case Cons(h, t) => foldLeft(t)(operator(default, h))(operator)
+        case _ => default
+
     /*
      * Group contiguous elements in the sequence
      * E.g., [10, 10, 20, 30] => [[10, 10], [20], [30]]
